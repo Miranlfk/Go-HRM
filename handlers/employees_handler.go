@@ -89,13 +89,16 @@ func UpdateEmployee(c *fiber.Ctx) error {
 	}
 	// Ensure that name and age cannot be changed by setting the existing name and age to the updated employee
 	updatedEmployee.Name = existingEmployee.Name
-	updatedEmployee.Age = existingEmployee.Age
+	updatedEmployee.Department = existingEmployee.Department
 	// Update only salary field
 	update := bson.D{
 		{
 			Key: "$set",
 			Value: bson.D{
 				{Key: "salary", Value: updatedEmployee.Salary},
+				{Key: "position", Value: updatedEmployee.Position},
+				{Key: "age", Value: updatedEmployee.Age},
+				{Key: "duration", Value: updatedEmployee.Duration},
 			},
 		},
 	}

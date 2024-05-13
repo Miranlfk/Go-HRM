@@ -87,10 +87,10 @@ func UpdateEmployee(c *fiber.Ctx) error {
 	if err := c.BodyParser(updatedEmployee); err != nil {
 		return c.Status(400).SendString(err.Error())
 	}
-	// Ensure that name and age cannot be changed by setting the existing name and age to the updated employee
+	// Ensure that name and deparment cannot be changed by setting the existing name and department to the updated employee
 	updatedEmployee.Name = existingEmployee.Name
 	updatedEmployee.Department = existingEmployee.Department
-	// Update only salary field
+	// Update only salary, position, age, duration fields
 	update := bson.D{
 		{
 			Key: "$set",
